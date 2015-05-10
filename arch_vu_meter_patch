@@ -1,5 +1,14 @@
---- /tmp/vu/src/ddb_vu_meter/vumeter.c	2015-05-10 18:45:20.367535620 +1000
-+++ /tmp/vu/src/ddb_vu_meter/vumeter_new.c	2015-05-10 18:42:14.372807000 +1000
+--- /tmp/vu/src/ddb_vu_meter/vumeter.c	2015-05-10 19:05:08.375735060 +1000
++++ /tmp/vu/src/ddb_vu_meter-build/vumeter.c	2015-05-10 19:15:56.850150160 +1000
+@@ -89,7 +89,7 @@
+ 
+ enum STYLE { STYLE_BARS = 0, STYLE_RETRO = 1 };
+ 
+-static int CONFIG_STYLE = STYLE_BARS;
++static int CONFIG_STYLE = STYLE_RETRO;
+ static int CONFIG_REFRESH_INTERVAL = 25;
+ static int CONFIG_DB_RANGE = 70;
+ static int CONFIG_ENABLE_HGRID = 1;
 @@ -809,12 +809,9 @@
  {
      if (!w->surf_png) {
@@ -16,3 +25,12 @@
              return;
          }
          w->surf_png = cairo_image_surface_create_from_png (path);
+@@ -1006,7 +1003,7 @@
+             vumeter_draw_retro (w, cr, width, height);
+             break;
+         default:
+-            vumeter_draw_bars (w, cr, width, height);
++            vumeter_draw_retro (w, cr, width, height);
+             break;
+     }
+     deadbeef->mutex_unlock (w->mutex);
