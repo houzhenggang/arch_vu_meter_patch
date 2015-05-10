@@ -1,0 +1,18 @@
+--- /tmp/vu/src/ddb_vu_meter/vumeter.c	2015-05-10 18:45:20.367535620 +1000
++++ /tmp/vu/src/ddb_vu_meter/vumeter_new.c	2015-05-10 18:42:14.372807000 +1000
+@@ -809,12 +809,9 @@
+ {
+     if (!w->surf_png) {
+         char path[PATH_MAX];
+-        const char *home_dir = getenv ("HOME");
+-        if (home_dir && strcmp(home_dir, "") == 0) {
+-            home_dir = NULL;
+-        }
+-        const int sz = snprintf (path, PATH_MAX, "%s/vumeter.png", home_dir);
+-        if (!home_dir || !path) {
++
++        const int sz = snprintf (path, PATH_MAX, "/usr/lib/deadbeef/vumeter.png"); //<- Arch Linux
++        if (!path) {
+             return;
+         }
+         w->surf_png = cairo_image_surface_create_from_png (path);
